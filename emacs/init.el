@@ -36,8 +36,8 @@
 
 (use-package yafolding
   :ensure t
-  :bind (("C-c f" . yafolding-toggle-element)
-         ("C-c F" . yafolding-toggle-all)))
+  :bind (("s-f" . yafolding-toggle-element)
+         ("s-F" . yafolding-toggle-all)))
 
 (use-package yasnippet
   :ensure t
@@ -59,7 +59,7 @@
 ;; enable jump between windows.
 (use-package ace-window
   :ensure t
-  :bind (("M-o" . 'ace-window)))
+  :bind (("s-w" . 'ace-window)))
 
 ;; just like tmux.
 (use-package zoom-window
@@ -98,20 +98,24 @@
   :ensure t)
 
 ;; ansible
+
 (use-package ansible
   :ensure t)
 
 ;; git stuff
+
 (use-package magit
   :ensure t
   :bind (("C-c m" . 'magit-status)))
 
 ;; display the diff on each changed line.
+
 (use-package diff-hl
   :ensure t
   :config (global-diff-hl-mode))
 
 ;; completion system.
+
 (use-package company
   :ensure t
   :hook (after-init . global-company-mode))
@@ -240,9 +244,20 @@
 (use-package indium
   :ensure t)
 
+(use-package js3-mode
+  :ensure t)
+
 (use-package rjsx-mode
   :ensure t
   :custom ((js2-indent-level 2)))
+
+;; typescript
+
+(use-package typescript-mode
+  :ensure t
+  :custom ((typescript-indent-level 2)))
+
+;; vue mode
 
 (defun vue-js-indent ()
   "Take the overlay of the vue and indent according to its current mode."
@@ -276,10 +291,6 @@
   (interactive)
   (vue-js-indent))
 
-(use-package typescript-mode
-  :ensure t
-  :custom ((typescript-indent-level 2)))
-
 (use-package vue-mode
   :ensure t
   :custom ((js-indent-level 2)
@@ -306,6 +317,7 @@
  '(bw-background "black")
  '(bw-foreground "white")
  '(column-number-mode t)
+ '(css-indent-offset 2)
  '(custom-safe-themes
    (quote
     ("48169b8c406d2633ded74ce35ae5797ca9821e76079702030414a29190592d27" "59befc7efc9cd5a90529cfc1e5929d627a7f5c816aa5a8bdad080c4392b3cb1d" default)))
@@ -336,11 +348,13 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (scss-mode sass-mode typescript-mode rainbow-delimiters rainbow-delimiters-mode company-ghc yaml-mode flycheck-hdevtools elpy sourcetrail bison-mode edts js3-mode json-mode indium counsel-gtags company-lsp lsp-ui lsp-haskell lsp-mode lsp attrap dockerfile-mode docker-tramp counsel-tramp counsel-projectile vue-mode rjsx-mode cloud-theme sly realgud company-irony-c-headers irony-eldoc flycheck-irony company-irony irony company-c-headers helm-ggtags ggtags helm-projectile helm-system-packages helm company-distel lfe-mode flycheck company-erlang erlang zoom-window yasnippet yafolding which-key use-package system-packages projectile paredit multiple-cursors magit diff-hl ansible alchemist ace-window)))
+    (grayscale-theme chocolate-theme scss-mode sass-mode typescript-mode rainbow-delimiters rainbow-delimiters-mode company-ghc yaml-mode flycheck-hdevtools elpy sourcetrail bison-mode edts js3-mode json-mode indium counsel-gtags company-lsp lsp-ui lsp-haskell lsp-mode lsp attrap dockerfile-mode docker-tramp counsel-tramp counsel-projectile vue-mode rjsx-mode cloud-theme sly realgud company-irony-c-headers irony-eldoc flycheck-irony company-irony irony company-c-headers helm-ggtags ggtags helm-projectile helm-system-packages helm company-distel lfe-mode flycheck company-erlang erlang zoom-window yasnippet yafolding which-key use-package system-packages projectile paredit multiple-cursors magit diff-hl ansible alchemist ace-window)))
  '(projectile-completion-system (quote ivy))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
+ '(typescript-indent-level 2)
  '(visible-bell nil)
+ '(vue-html-extra-indent 2)
  '(vue-modes
    (quote
     ((:type template :name nil :mode vue-html-mode)
@@ -349,10 +363,10 @@
      (:type template :name pug :mode pug-mode)
      (:type template :name slm :mode slim-mode)
      (:type template :name slim :mode slim-mode)
-     (:type script :name nil :mode js2-mode)
-     (:type script :name js :mode js2-mode)
-     (:type script :name es6 :mode js2-mode)
-     (:type script :name babel :mode js2-mode)
+     (:type script :name nil :mode js3-mode)
+     (:type script :name js :mode js3-mode)
+     (:type script :name es6 :mode js3-mode)
+     (:type script :name babel :mode js3-mode)
      (:type script :name coffee :mode coffee-mode)
      (:type script :name ts :mode typescript-mode)
      (:type script :name typescript :mode typescript-mode)
