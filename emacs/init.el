@@ -201,7 +201,19 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :hook ((prog-mode . rainbow-delimiters-mode)))
+  :hook ((prog-mode . rainbow-delimiters-mode))
+  :custom-face
+  (rainbow-delimiters-depth-1-face ((t (:foreground "#1b81e8"))))
+  (rainbow-delimiters-depth-2-face ((t (:foreground "#ffffff"))))
+  (rainbow-delimiters-depth-3-face ((t (:foreground "#888888"))))
+  (rainbow-delimiters-depth-4-face ((t (:foreground "#e8591b"))))
+  (rainbow-delimiters-depth-5-face ((t (:foreground "#1b81e8"))))
+  (rainbow-delimiters-depth-6-face ((t (:foreground "#ffffff"))))
+  (rainbow-delimiters-depth-7-face ((t (:foreground "#888888"))))
+  (rainbow-delimiters-depth-8-face ((t (:foreground "#2f2f2f"))))
+  (rainbow-delimiters-depth-9-face ((t (:foreground "#1b81e8"))))
+  (rainbow-delimiters-unmatched-face ((t (:foreground "e91b23"))))
+  (rainbow-delimiters-mismatched-face ((t (:foreground "yellow")))))
 
 ;; erlang/elixir/lfe mode
 
@@ -215,8 +227,7 @@
            (erlang-indent-level 2)
            (inferior-erlang-machine-options '("-sname" "emacs"))
            (inferior-erlang-prompt-timeout t))
-  :config (progn
-            (require 'erlang-start)))
+  :config (require 'erlang-start))
 
 (use-package alchemist
   :ensure t)
@@ -303,7 +314,7 @@
 (load-file "/dias/dotfiles/emacs/bw-theme.el")
 (use-package bw-theme
   :custom ((bw-foreground "white")
-           (bw-background "black"))
+           (bw-background "#191a1e"))
   :config (load-theme 'bw t))
 
 ;; key bindings.
