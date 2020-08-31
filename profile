@@ -45,3 +45,6 @@ export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 [[ -r /home/dias/.opam/opam-init/init.sh ]] &&
     source /home/dias/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
+# add cargo's bin path
+test -d $HOME/.cargo/bin &&
+    export PATH="$HOME/.cargo/bin:$PATH";
