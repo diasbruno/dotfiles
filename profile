@@ -45,6 +45,3 @@ export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 [[ -r /home/dias/.opam/opam-init/init.sh ]] &&
     source /home/dias/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
-# haskell's ghcup
-[[ -r /home/dias/.ghcup/env ]] &&
-     source /home/dias/.ghcup/env
