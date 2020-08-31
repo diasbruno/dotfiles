@@ -48,3 +48,7 @@ export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 # add cargo's bin path
 test -d $HOME/.cargo/bin &&
     export PATH="$HOME/.cargo/bin:$PATH";
+
+# add local/bin path
+test -d $HOME/.local/bin &&
+    export PATH="$HOME/.local/bin:$PATH";
