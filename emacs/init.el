@@ -97,6 +97,9 @@
 (use-package counsel-tramp
   :ensure t)
 
+;; (add-to-list 'load-path "/dias/forecastapp-api")
+;; (use-package forecastapp)
+
 ;; ansible
 
 (use-package ansible
@@ -136,7 +139,10 @@
 (use-package sourcetrail
   :ensure t)
 
-;; languages
+(use-package restclient
+    :ensure t
+    :mode (("\\.http\\'" . restclient-mode)))
+
 
 ;; yaml mode
 
@@ -154,22 +160,47 @@
 (use-package bison-mode
   :ensure t)
 
+(use-package eglot
+  :ensure t
+  :config
+  (add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp" "--verbose")))
+  (add-to-list 'eglot-server-programs '(fsharp-mode . ("FSharpLanguageServer"))))
+
+;; languages
+
+;; nix package manager
+
+(use-package nix-mode
+  :ensure t)
+
+(use-package nix-sandbox
+  :ensure t
+  :after 'nix-mode)
+
+;; purescript
+
+(use-package psci
+  :ensure t
+  :after purescript-mode)
+
+(use-package purescript-mode
+  :ensure t)
+
+;; smalltalk mode
+
+(use-package smalltalk-mode
+  :ensure t)
+
+;; fsharp mode
+
+(use-package fsharp-mode
+  :ensure t
+  :custom ((fsharp-indent-offset 2)
+           (inferior-fsharp-program "fsharpi --readline-"))
+  :hook ((fsharp-mode . highlight-indentation-mode)))
+
 ;; haskell mode
 
-(use-package haskell-mode
-  :ensure t
-  :hook ((haskell-mode . interactive-haskell-mode))
-  :bind (("C-c C-z" . #'haskell-process-load)
-         ("C-." . #'haskell-process-cabal-build))
-  :custom ((haskell-process-suggest-remove-import-lines t)
-           (haskell-process-auto-import-loaded-modules t)
-           (haskell-process-log t))
-  :config
-  (add-hook 'haskell-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends)
-                 (append '((company-capf company-dabbrev-code))
-                         company-backends)))))
 
 ;; c/c++ mode
 
@@ -220,14 +251,14 @@
 (defvar *erlang-asdf* "/dias/asdf/installs/erlang/22.2")
 (add-to-list 'exec-path (concat *erlang-asdf* "/bin"))
 
-(use-package erlang
-  :load-path "/dias/asdf/installs/erlang/22.2/lib/tools-3.3/emacs"
-  :custom ((erlang-root-dir *erlang-asdf*)
-           (erlang-man-root-dir (concat *erlang-asdf* "/man"))
-           (erlang-indent-level 2)
-           (inferior-erlang-machine-options '("-sname" "emacs"))
-           (inferior-erlang-prompt-timeout t))
-  :config (require 'erlang-start))
+;; (use-package erlang
+;;   :load-path "/dias/asdf/installs/erlang/22.2/lib/tools-3.3/emacs"
+;;   :custom ((erlang-root-dir *erlang-asdf*)
+;;            (erlang-man-root-dir (concat *erlang-asdf* "/man"))
+;;            (erlang-indent-level 2)
+;;            (inferior-erlang-machine-options '("-sname" "emacs"))
+;;            (inferior-erlang-prompt-timeout t))
+;;   :config (require 'erlang-start))
 
 (use-package alchemist
   :ensure t)
@@ -250,12 +281,24 @@
   :ensure t
   :custom (css-indent-offset 2))
 
+;; java/kotlin mode
+
+(use-package eglot
+  :ensure t)
+
+(use-package kotlin-mode
+  :ensure t)
+
+(use-package flycheck-kotlin
+  :ensure t
+  :hook (kotlin-mode . #'flycheck-kotlin-setup)
+  :custom (flycheck-kotlin-ktlint-executable "/dias/ktlint/ktlint/build/run/ktlint")
+  :after flycheck-mode kotlin-mode)
+
+
 ;; javascript mode
 
 (use-package indium
-  :ensure t)
-
-(use-package js3-mode
   :ensure t)
 
 (use-package rjsx-mode
@@ -332,72 +375,82 @@
  '(custom-safe-themes
    (quote
     ("48169b8c406d2633ded74ce35ae5797ca9821e76079702030414a29190592d27" "59befc7efc9cd5a90529cfc1e5929d627a7f5c816aa5a8bdad080c4392b3cb1d" default)))
- '(erlang-indent-level 2)
+ '(erlang-indent-level 2 t)
  '(erlang-man-root-dir "/dias/asdf/installs/erlang/22.2/man" t)
- '(erlang-root-dir "/dias/asdf/installs/erlang/22.2")
+ '(erlang-root-dir "/dias/asdf/installs/erlang/22.2" t)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flymake-no-changes-timeout nil)
  '(flymake-start-syntax-check-on-newline nil)
+ '(fsharp-indent-offset 2 t)
  '(haskell-compile-cabal-build-alt-command "stack clean -s && stack build --ghc-option=-ferror-spans")
  '(haskell-compile-cabal-build-command "stack build --ghc-option=-ferror-spans")
- '(haskell-process-auto-import-loaded-modules t t nil "Customized with use-package haskell-mode")
- '(haskell-process-log t t nil "Customized with use-package haskell-mode")
- '(haskell-process-suggest-remove-import-lines t t nil "Customized with use-package haskell-mode")
+ '(haskell-process-auto-import-loaded-modules t nil nil "Customized with use-package haskell-mode")
+ '(haskell-process-log t nil nil "Customized with use-package haskell-mode")
+ '(haskell-process-suggest-remove-import-lines t nil nil "Customized with use-package haskell-mode")
  '(indent-tab-mode nil)
  '(indent-tabs-mode nil)
  '(inferior-erlang-machine-options (quote ("-sname" "emacs")) t)
  '(inferior-erlang-prompt-timeout t t)
+ '(inferior-fsharp-program "fsharpi --readline-" t)
  '(inhibit-startup-screen t)
  '(ivy-re-builders-alist (quote ((t . ivy--regex-fuzzy))) t)
  '(ivy-use-virtual-buffers t)
  '(js-indent-level 2)
  '(js2-indent-level 2 t)
  '(json-mode-auto-mode-list (quote (".babelrc" ".bowerrc" "composer.lock" ".eslintrc")))
- '(lsp-haskell-process-path-hie "/home/dias/.local/bin/hie")
- '(lsp-haskell-process-wrapper-function (quote identity))
- '(lsp-prefer-flymake :none)
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (grayscale-theme chocolate-theme scss-mode sass-mode typescript-mode rainbow-delimiters rainbow-delimiters-mode company-ghc yaml-mode flycheck-hdevtools elpy sourcetrail bison-mode edts js3-mode json-mode indium counsel-gtags company-lsp lsp-ui lsp-haskell lsp-mode lsp attrap dockerfile-mode docker-tramp counsel-tramp counsel-projectile vue-mode rjsx-mode cloud-theme sly realgud company-irony-c-headers irony-eldoc flycheck-irony company-irony irony company-c-headers helm-ggtags ggtags helm-projectile helm-system-packages helm company-distel lfe-mode flycheck company-erlang erlang zoom-window yasnippet yafolding which-key use-package system-packages projectile paredit multiple-cursors magit diff-hl ansible alchemist ace-window)))
- '(projectile-completion-system (quote ivy))
+    (reason-mode csharp-mode dotnet sly-asdf sly-quicklisp nix-sandbox nix-mode dhall-mode psci tuareg flycheck-ocaml caml hlint-refactor smalltalk-mode restclient pg request zencoding-mode poetry navigel ctable "s" flycheck-golangci-lint go-mode go-projectile go-snippets rust-mode vue-mode flycheck-kotlin kotlin-mode fsharp-mode grayscale-theme chocolate-theme scss-mode sass-mode typescript-mode rainbow-delimiters rainbow-delimiters-mode company-ghc yaml-mode flycheck-hdevtools elpy sourcetrail bison-mode edts json-mode indium counsel-gtags attrap dockerfile-mode docker-tramp counsel-tramp counsel-projectile rjsx-mode cloud-theme sly realgud company-irony-c-headers irony-eldoc flycheck-irony company-irony irony company-c-headers helm-ggtags ggtags helm-projectile helm-system-packages helm company-distel lfe-mode flycheck company-erlang erlang zoom-window yasnippet yafolding which-key use-package system-packages projectile paredit multiple-cursors magit diff-hl ansible alchemist ace-window)))
+ '(projectile-completion-system (quote ivy) t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(typescript-indent-level 2)
  '(visible-bell nil)
- '(vue-html-extra-indent 2)
- '(vue-modes
-   (quote
-    ((:type template :name nil :mode vue-html-mode)
-     (:type template :name html :mode vue-html-mode)
-     (:type template :name jade :mode jade-mode)
-     (:type template :name pug :mode pug-mode)
-     (:type template :name slm :mode slim-mode)
-     (:type template :name slim :mode slim-mode)
-     (:type script :name nil :mode js3-mode)
-     (:type script :name js :mode js3-mode)
-     (:type script :name es6 :mode js3-mode)
-     (:type script :name babel :mode js3-mode)
-     (:type script :name coffee :mode coffee-mode)
-     (:type script :name ts :mode typescript-mode)
-     (:type script :name typescript :mode typescript-mode)
-     (:type script :name tsx :mode typescript-tsx-mode)
-     (:type style :name nil :mode css-mode)
-     (:type style :name css :mode css-mode)
-     (:type style :name stylus :mode stylus-mode)
-     (:type style :name less :mode less-css-mode)
-     (:type style :name postcss :mode css-mode)
-     (:type style :name scss :mode scss-mode)
-     (:type style :name sass :mode sass-mode)
-     (:type i18n :name nil :mode json-mode)
-     (:type i18n :name json :mode json-mode)
-     (:type i18n :name yaml :mode yaml-mode)))))
+ '(vue-html-extra-indent 2))
+'(vue-modes
+  (quote
+   ((:type template :name nil :mode vue-html-mode)
+    (:type template :name html :mode vue-html-mode)
+    (:type template :name jade :mode jade-mode)
+    (:type template :name pug :mode pug-mode)
+    (:type template :name slm :mode slim-mode)
+    (:type template :name slim :mode slim-mode)
+    (:type script :name nil :mode js2-mode)
+    (:type script :name js :mode js2-mode)
+    (:type script :name es6 :mode js2-mode)
+    (:type script :name babel :mode js2-mode)
+    (:type script :name coffee :mode coffee-mode)
+    (:type script :name ts :mode typescript-mode)
+    (:type script :name typescript :mode typescript-mode)
+    (:type script :name tsx :mode typescript-tsx-mode)
+    (:type style :name nil :mode css-mode)
+    (:type style :name css :mode css-mode)
+    (:type style :name stylus :mode stylus-mode)
+    (:type style :name less :mode less-css-mode)
+    (:type style :name postcss :mode css-mode)
+    (:type style :name scss :mode scss-mode)
+    (:type style :name sass :mode sass-mode)
+    (:type i18n :name nil :mode json-mode)
+    (:type i18n :name json :mode json-mode)
+    (:type i18n :name yaml :mode yaml-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "#191a1e" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "DAMA" :family "monospace"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#1b81e8"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "#ffffff"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#888888"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#e8591b"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "#1b81e8"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "#ffffff"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "#888888"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "#2f2f2f"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "#1b81e8"))))
+ '(rainbow-delimiters-mismatched-face ((t (:foreground "yellow"))))
+ '(rainbow-delimiters-unmatched-face ((t (:foreground "e91b23")))))
 (provide 'init)
 ;;; init.el ends here
