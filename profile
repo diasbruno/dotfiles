@@ -36,8 +36,6 @@ versions() {
     _pl_version "Haskell" "haskell"
 }
 
-versions
-
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 
