@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: imd
+# key: imd
+# --
+import { $0 } from "$1";
