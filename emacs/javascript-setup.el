@@ -20,6 +20,8 @@
 
 (use-package typescript-mode
   :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
   :custom ((typescript-indent-level 2)))
 
 ;; vue mode
