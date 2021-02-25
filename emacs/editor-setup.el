@@ -17,6 +17,10 @@
   :ensure t
   :init (load-theme 'badwolf t))
 
+(set-scroll-bar-mode nil)
+
+(setq tool-bar-mode -1)
+
 ;; auto-save
 (setq backup-directory-alist '(("." . "/tmp/.emacs.d/auto-save")))
 
