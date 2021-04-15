@@ -29,15 +29,16 @@
   :config
   (require 'dap-java)
 
-  (setq lsp-java-vmargs
-	(list "-noverify"
-	      "-Xmx2G"
-	      "-XX:+UseG1GC"
-	      "-XX:+UseStringDeduplication"
-	      (concat "-javaagent:" lombok-jar)
-	      (concat "-Xbootclasspath/a:" lombok-jar))
+  ;; lsp-java-vmargs
+  ;;	(list "-noverify"
+  ;;	      "-Xmx2G"
+  ;;	      "-XX:+UseG1GC"
+  ;;	      "-XX:+UseStringDeduplication"
+  ;;	      (concat "-javaagent:" lombok-jar)
+  ;;	      (concat "-Xbootclasspath/a:" lombok-jar))
 
-	lsp-file-watch-ignored
+
+  (setq lsp-file-watch-ignored
 	'(".idea" ".ensime_cache" ".eunit" "node_modules"
 	  ".git" ".hg" ".fslckout" "_FOSSIL_"
 	  ".bzr" "_darcs" ".tox" ".svn" ".stack-work"
@@ -47,7 +48,8 @@
 	;; Don't organize imports on save
 	lsp-java-save-action-organize-imports nil)
 
-  :demand t)
+  :demand t
+  :hook (java-mode . lsp))
 
 (provide 'java-setup)
 ;;; java-setup.el ends here

@@ -7,14 +7,13 @@
 ;;; Code:
 ;;;
 
+(require 'use-package)
+
 (use-package haskell-mode
   :ensure t)
 
-(use-package eglot
-  :ensure t
-  :config
-  (add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp" "--verbose")))
-  (add-to-list 'eglot-server-programs '(fsharp-mode . ("FSharpLanguageServer"))))
+(use-package lsp-haskell
+  :ensure t)
 
 (provide 'haskell-setup)
 ;;; haskell-setup.el ends here

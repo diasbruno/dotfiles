@@ -7,24 +7,22 @@
 
 (require 'use-package)
 
-;; javascript mode
-
-(use-package indium
+(use-package eslint-fix
   :ensure t)
 
 (use-package rjsx-mode
   :ensure t
-  :custom ((js2-indent-level 2)))
-
-;; typescript
+  :custom ((js-indent-level 2)))
 
 (use-package typescript-mode
   :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
-  :custom ((typescript-indent-level 2)))
+  :custom ((typescript-indent-level 2))
+  :hook ((typescript-mode . lsp)
+	 (typescript-mode . eslint-fix)))
 
-;; vue mode
+(global-key-bind (kbd "C-c d") 'eslint-fix)
+
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 
 (defun vue-js-indent ()
   "Take the overlay of the vue and indent according to its current mode."
@@ -63,9 +61,8 @@
   :custom ((js-indent-level 2)
 	   (js2-indent-level 2)
 	   (vue-html-extra-indent 2))
-  :bind (("C-c t" . #'vue-js-indentation)))
-
-;; css mode
+  :bind (("C-c t" . #'vue-js-indentation))
+  :hook (vue-mode . lsp))
 
 (use-package scss-mode
   :ensure t

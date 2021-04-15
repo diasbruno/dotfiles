@@ -7,12 +7,9 @@
 ;;; Code:
 ;;;
 
-(load-file "/usr/local/src/dotfiles/emacs/packages-setup.el")
-(load-file "/usr/local/src/dotfiles/emacs/editor-setup.el")
-
 (let ((langs '(packages editor
 	       lisp haskell smalltalk ccpp
-	       fsharp erlang java
+	       fsharp swift erlang java
 	       python javascript)))
   (mapc (lambda (file)
 	  (load-file (concat "/usr/local/src/dotfiles/emacs/"
