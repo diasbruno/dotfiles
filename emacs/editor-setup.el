@@ -19,7 +19,9 @@
 
 (set-scroll-bar-mode nil)
 
-(setq tool-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(setq indent-tabs-mode nil)
 
 ;; auto-save
 (setq backup-directory-alist '(("." . "/tmp/.emacs.d/auto-save")))
