@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ifndef
+# key: ifndef
+# --
+
+#ifndef __
+#ifndef __ 1
+
+#endif
