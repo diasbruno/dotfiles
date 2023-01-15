@@ -41,7 +41,7 @@
 
 (custom-theme-set-faces
  'bw
- `(default ((t (:family "Menlo" :foundry "nil"
+ `(default ((t (:family "Monospace" :foundry "nil"
                         :width normal :height 96 :weight normal
                         :slant normal :underline nil
                         :overline nil :strike-through nil
