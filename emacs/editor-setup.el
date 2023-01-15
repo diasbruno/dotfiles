@@ -4,34 +4,32 @@
 
 (require 'use-package)
 
-;; (load-file "/usr/local/src/dotfiles/emacs/bw-theme.el")
+(load-file "/usr/local/src/dotfiles/emacs/bw-theme.el")
 
-;; (use-package bw-theme
-;;   :custom
-;;   (bw-foreground "#ffffff")
-;;   (bw-background "#191a1e")
-;;   :config
-;;   (load-theme 'bw t))
-
-(use-package badwolf-theme
-  :ensure t
-  :init (load-theme 'badwolf t))
+(use-package bw-theme
+  :custom
+  (bw-foreground "#ffffff")
+  (bw-background "#191a1e")
+  :config
+  (load-theme 'bw t))
 
 (set-scroll-bar-mode nil)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(setq indent-tabs-mode nil)
+(setf indent-tabs-mode nil)
 
 ;; auto-save
-(setq backup-directory-alist '(("." . "/tmp/.emacs.d/auto-save")))
-
-(defun global-key-bind (key fn)
-  "Define a global bind for KEY to execute FN."
-  (global-set-key (kbd key) fn))
+(setf backup-directory-alist '(("." . "/tmp/.emacs.d/auto-save")))
 
 ;; key bindings.
 (global-key-bind (kbd "C-c q") 'whitespace-cleanup)
+(global-key-bind (kbd "C-c p g") 'projectile-grep)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
 
 ;; git stuff
 
@@ -58,7 +56,7 @@
 (use-package yafolding
   :ensure t
   :bind (("C-c f f" . yafolding-toggle-element)
-	 ("C-c f F" . yafolding-toggle-all)))
+	 ("C-c f g" . yafolding-toggle-all)))
 
 (use-package yasnippet
   :ensure t
@@ -74,8 +72,8 @@
 ;; enable multiple cursors.
 (use-package multiple-cursors
   :ensure t
-  :bind (("M-[" . 'mc/mark-previous-like-this)
-	 ("M-]" . 'mc/mark-next-like-this)))
+  :bind (("C-c [" . 'mc/mark-previous-like-this)
+	 ("C-c ]" . 'mc/mark-next-like-this)))
 
 ;; enable jump between windows.
 (use-package ace-window
@@ -85,7 +83,7 @@
 ;; just like tmux.
 (use-package zoom-window
   :ensure t
-  :bind (("C-c z" . zoom-window-zoom)))
+  :bind (("C-c z z" . zoom-window-zoom)))
 
 ;; completion system.
 
@@ -110,7 +108,8 @@
 	 ("C-c p t" . projectile-run-shell)
 	 ("C-c p d" . projectile-dired)
 	 ("C-c p p" . projectile-switch-project)
-	 ("C-c p f" . projectile-find-file))
+	 ("C-c p f" . projectile-find-file)
+	 ("C-c p g" . projectile-grep))
   :init (projectile-mode))
 
 ;; nix package manager
@@ -149,8 +148,17 @@
 (use-package dockerfile-mode
   :ensure t)
 
-(use-package docker-tramp
+(use-package comby
   :ensure t)
+
+(use-package forge
+  :ensure t)
+
+(use-package lsp-mode
+  :ensure t
+  :bind (("C-c l r" . #'lsp-restart-workspace)
+	 ("C-c l d" . #'lsp-shutdown-workspace)
+	 ("C-c l l" . #'lsp-mode)))
 
 (provide 'editor-setup)
 ;;; editor-setup.el ends here
