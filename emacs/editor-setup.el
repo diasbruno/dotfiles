@@ -79,6 +79,9 @@
   :ensure t
   :bind (("C-c w" . 'ace-window)))
 
+(use-package window-layout
+  :ensure t)
+
 ;; just like tmux.
 (use-package zoom-window
   :ensure t
