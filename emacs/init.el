@@ -7,12 +7,15 @@
 ;;; Code:
 ;;;
 
+(defvar *dotfiles-path* "~/Programming/dotfiles")
+
+(defun file-from-dotfiles (path)
+  "Given a PATH return a file from the dotfiles path."
+  (concat *dotfiles-path* path))
+
 (defun global-key-bind (key fn)
   "Define a global bind for KEY to execute FN."
   (global-set-key (kbd key) fn))
-
-(defvar *diasbruno/emacs-configurations-path*
-  "/usr/local/src/dotfiles/emacs/")
 
 (defvar *diasbruno/required-configurations*
   '(packages editor lisp))
@@ -21,34 +24,24 @@
   '(haskell smalltalk ccpp fsharp swift
 	    erlang java python javascript))
 
-(defun diasbruno/configuration-file-name (sym)
+(defun diasbruno/configuration-from-symbol (sym)
   "Make the configuration file name from SYM."
-  (concat *diasbruno/emacs-configurations-path*
-	  (symbol-name sym)
-	  "-setup.el"))
+  (file-from-dotfiles (concat "/emacs/" (symbol-name sym) "-setup.el")))
 
 (defun diasbruno/load-configuration (sym)
   "Load the configuration for SYM."
-  (load-file (diasbruno/configuration-file-name sym)))
+  (load-file (diasbruno/configuration-from-symbol sym)))
 
 (mapc #'diasbruno/load-configuration
       *diasbruno/required-configurations*)
+
+(mapc #'diasbruno/load-configuration
+      *diasbruno/language-configurations*)
 
 (defun diasbruno/generate-loader (sym)
   "Generate loader for a language with a SYM."
   (lambda ()
     (diasbruno/load-configuration sym)))
-
-(defmacro diasbruno/load-declarations (sym)
-  "SYM."
-  (let ((name (make-symbol (concat (symbol-name sym) "-lang"))))
-    `(defun ,name ()
-       (diasbruno/configuration-file-name ',sym))))
-
-(eval-and-compile
-  (diasbruno/load-declarations haskell)
-  (diasbruno/load-declarations java)
-  (diasbruno/load-declarations javascript))
 
 (provide 'init)
 ;;; init.el ends here

@@ -4,7 +4,7 @@
 
 (require 'use-package)
 
-(load-file "/usr/local/src/dotfiles/emacs/bw-theme.el")
+(load-file (file-from-dotfiles "/emacs/bw-theme.el"))
 
 (use-package bw-theme
   :custom
@@ -60,8 +60,8 @@
 (use-package yasnippet
   :ensure t
   :config (progn
-	    (push "/usr/local/src/dotfiles/emacs/snippets" yas-snippet-dirs)
-	    (yas-global-mode t)))
+            (push (file-from-dotfiles "/emacs/snippets") yas-snippet-dirs)
+            (yas-global-mode t)))
 
 ;; display binding for commands.
 (use-package which-key
