@@ -24,7 +24,6 @@
 
 ;; key bindings.
 (global-key-bind (kbd "C-c q") 'whitespace-cleanup)
-(global-key-bind (kbd "C-c p g") 'projectile-grep)
 
 (use-package dashboard
   :ensure t
@@ -105,11 +104,12 @@
 (use-package projectile
   :ensure t
   :bind (("C-c p k" . projectile-kill-buffers)
-	 ("C-c p t" . projectile-run-shell)
-	 ("C-c p d" . projectile-dired)
-	 ("C-c p p" . projectile-switch-project)
-	 ("C-c p f" . projectile-find-file)
-	 ("C-c p g" . projectile-grep))
+         ("C-c p t" . projectile-run-shell)
+         ("C-c p d" . projectile-dired)
+         ("C-c p p" . projectile-switch-project)
+         ("C-c p f" . projectile-find-file)
+         ("C-c p g" . projectile-grep)
+         ("C-c p s" . projectile-run-shell))
   :init (projectile-mode))
 
 ;; nix package manager
