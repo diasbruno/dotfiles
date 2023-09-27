@@ -25,6 +25,9 @@
 ;; key bindings.
 (global-key-bind (kbd "C-c q") 'whitespace-cleanup)
 
+;; key bindings.
+(global-key-bind (kbd "C-c .") 'projectile-compile-project)
+
 (use-package dashboard
   :ensure t
   :config
