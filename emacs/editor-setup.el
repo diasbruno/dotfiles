@@ -85,6 +85,24 @@
 (use-package window-layout
   :ensure t)
 
+;; elfeed
+(use-package elfeed
+  :ensure t)
+
+(use-package elfeed-org
+  :ensure t
+  :config (progn
+            (elfeed-org)
+            (setq rmh-elfeed-org-files (list "~/Documents/feeds.org"))))
+
+(use-package elfeed-dashboard
+  :ensure t
+  :config
+  (progn
+    (setq elfeed-dashboard-file "~/Documents/elfeed-dashboard.org")
+    ;; update feed counts on elfeed-quit
+    (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)))
+
 ;; just like tmux.
 (use-package zoom-window
   :ensure t
