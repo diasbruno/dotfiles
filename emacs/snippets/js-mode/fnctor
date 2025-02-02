@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: fnctor
+# key: fnctor
+# --
+
+if (!(this instanceof $1)) {
+  return new $1($2);
+}
+$0

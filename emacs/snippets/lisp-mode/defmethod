@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: defmethod
+# key: defmethod
+# --
+(defmethod ${1:method-name} (({2:arg} ${3:class}) ${4:args})
+  $0)

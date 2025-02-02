@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: npkg
+# key: npkg
+# --
+
+(defpackage #:$1
+  (:use #:cl$2))
+
+(in-package #:$1)
+
+$3

@@ -7,6 +7,13 @@
 
 (require 'use-package)
 
+(load "~/Programming/js-eval.el/js-eval.el")
+
+(global-key-bind (kbd "C-c j e") #'js-eval-eval-expression)
+(global-key-bind (kbd "C-c j r") #'js-eval-eval-region)
+(global-key-bind (kbd "C-c j i") #'js-eval)
+(global-key-bind (kbd "C-c j t") #'js-eval-quit)
+
 (use-package eslint-fix
   :ensure t)
 

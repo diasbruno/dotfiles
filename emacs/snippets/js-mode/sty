@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sty
+# key: sty
+# --
+
+const $1 = new (function $1() {});
+$0

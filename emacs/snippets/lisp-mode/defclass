@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: defclass
+# key: defclass
+# --
+(defclass ${1:class-name} (${2:superclasses})
+  (${3:slots})
+  $0)

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: ct
+# key: ct
+# --
+
+export function $1($2) {
+  if (!(this instanceof $1)) {
+    return new $1($2);
+  }
+  $0
+}
