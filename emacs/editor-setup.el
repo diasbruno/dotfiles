@@ -48,7 +48,9 @@
             (insert start-tag end-tag)
             (backward-char (length end-tag))))))))
 
-(global-key-bind "C-c t" #'insert-html-tag)
+(global-key-bind "C-c t" #'insert-html-tag
+(global-key-bind "C-<" #'undo)
+(global-key-bind "C->" #'undo-redo)
 
 (use-package combyier
   :load-path "~/Programming/combyier"
