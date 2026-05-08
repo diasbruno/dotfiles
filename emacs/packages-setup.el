@@ -16,10 +16,7 @@
 	urls))
 
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package t))
-
-(require 'use-package)
+  (package-install 'use-package))
 
 (provide 'packages-setup)
 ;;; packages-setup.el ends here
