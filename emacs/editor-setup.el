@@ -293,6 +293,8 @@
 ;; key bindings.
 (global-key-bind (kbd "C-c .") 'projectile-compile-project)
 
+(use-package rfc-mode)
+
 (setq visible-bell t)
 
 (use-package cursor-agent
