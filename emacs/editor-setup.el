@@ -295,5 +295,12 @@
 
 (setq visible-bell t)
 
+(use-package cursor-agent
+  :ensure t
+  :load-path "/usr/local/src/cursor-agent.el/"
+  :config
+  (require 'cursor-agent)
+  (setq cursor-agent-default-model "composer-1"))
+
 (provide 'editor-setup)
 ;;; editor-setup.el ends here
