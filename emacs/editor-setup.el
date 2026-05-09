@@ -48,12 +48,12 @@
             (insert start-tag end-tag)
             (backward-char (length end-tag))))))))
 
-(global-key-bind "C-c t" #'insert-html-tag
+(global-key-bind "C-c t" #'insert-html-tag)
 (global-key-bind "C-<" #'undo)
 (global-key-bind "C->" #'undo-redo)
 
 (use-package combyier
-  :load-path "~/Programming/combyier"
+  :load-path "/usr/local/src/combyier"
   :config (require 'combyier))
 
 ;; theme
@@ -276,17 +276,13 @@
          ("C-c l d" . #'lsp-shutdown-workspace)
          ("C-c l l" . #'lsp-mode)))
 
-
-(add-to-list 'load-path "~/Programming/dap-mode")
-
 (use-package dap-mode
   :ensure t
   :config
   (dap-mode t)
   (dap-ui-mode t))
 
-
-(add-to-list 'load-path "~/Programming/combobulate")
+(add-to-list 'load-path "/usr/local/src/combobulate")
 
 (require 'combobulate)
 
@@ -295,7 +291,7 @@
 ;; custom key bindings
 
 ;; auto-save
-(setf backup-directory-alist '(("." . "/tmp/.emacs.d/auto-save")))
+(setf backup-directory-alist '(("." . "/usr/local/src/emacs/tmp/auto-save")))
 
 ;; key bindings.
 (global-key-bind (kbd "C-c q") 'whitespace-cleanup)
