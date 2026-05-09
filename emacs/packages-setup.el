@@ -10,6 +10,7 @@
 (require 'package)
 
 (let ((urls '(("melpa" . "http://melpa.org/packages/")
+              ("melpa-stable" . "https://stable.melpa.org/packages/")
 	      ("org" . "http://orgmode.org/elpa/"))))
   (mapc (lambda (source)
 	  (add-to-list 'package-archives source t))
