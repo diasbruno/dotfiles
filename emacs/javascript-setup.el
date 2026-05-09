@@ -1,4 +1,4 @@
-;;; javascript-setup --- javascript editor.
+;;; javascript-setup --- javascript editor.  -*- lexical-binding: t; -*-
 ;;;
 ;;; Commentary:
 ;;;
@@ -7,7 +7,7 @@
 
 (require 'use-package)
 
-(load "~/Programming/js-eval.el/js-eval.el")
+(load "/usr/local/src/js-eval.el/js-eval.el")
 
 (global-key-bind (kbd "C-c j e") #'js-eval-eval-expression)
 (global-key-bind (kbd "C-c j r") #'js-eval-eval-region)

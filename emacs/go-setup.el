@@ -1,4 +1,4 @@
-;;; go-setup.el -- My emacs configuration.
+;;; go-setup.el -- My emacs configuration.  -*- lexical-binding: t; -*-
 ;;;
 ;;; Commentary:
 ;;;

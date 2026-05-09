@@ -1,4 +1,4 @@
-;;; bw-theme.el --- Black/white theme.
+;;; bw-theme.el --- Black/white theme.  -*- lexical-binding: t; -*-
 
 ;; Author: Bruno Dias <dias.h.bruno@gmail.com>
 ;; Version: 0.1.0

@@ -1,4 +1,4 @@
-;;; python-setup.el -- Python setup.
+;;; python-setup.el -- Python setup.  -*- lexical-binding: t; -*-
 ;;;
 ;;; Commentary:
 ;;;

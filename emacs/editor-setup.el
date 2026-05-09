@@ -1,4 +1,4 @@
-;;; editor-setup.el --- Summary
+;;; editor-setup.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
