@@ -10,10 +10,10 @@
 (require 'use-package)
 
 (use-package haskell-mode
-  :ensure t)
+  )
 
 (use-package lsp-haskell
-  :ensure t
+  
   :config (progn
             (setf lsp-haskell-server-path "haskell-language-server-wrapper")))
 

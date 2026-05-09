@@ -12,16 +12,16 @@
 (defvar lombok-jar nil)
 
 (use-package kotlin-mode
-  :ensure t)
+  )
 
 (use-package flycheck-kotlin
-  :ensure t
+  
   :hook (kotlin-mode . #'flycheck-kotlin-setup)
   :custom (flycheck-kotlin-ktlint-executable "/dias/ktlint/ktlint/build/run/ktlint")
   :after flycheck-mode kotlin-mode)
 
 (use-package lsp-java
-  :ensure t
+  
   :config
   (require 'dap-java)
 

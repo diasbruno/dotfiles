@@ -65,13 +65,13 @@
 ;; ligatures and math synbols
 
 (use-package pretty-mode
-  :ensure t
+  
   :config (turn-on-pretty-mode))
 
 ;; completions
 
 (use-package vertico
-  :ensure t
+  
   :config (vertico-mode))
 
 (use-package ellama
@@ -84,11 +84,11 @@
 
 ;; diagram and uml
 (use-package plantuml-mode
-  :ensure t)
+  )
 
 ;; pomodoro
 (use-package pomm
-  :ensure t)
+  )
 
 (set-scroll-bar-mode nil)
 
@@ -97,23 +97,23 @@
 (setf indent-tabs-mode nil)
 
 (use-package dashboard
-  :ensure t
+  
   :config (dashboard-setup-startup-hook))
 
 ;; edior config
 (use-package editorconfig
-  :ensure t
+  
   :config
   (editorconfig-mode 1))
 
 ;; git stuff
 
 (use-package magit
-  :ensure t
+  
   :bind (("C-c m" . magit-status)))
 
 (use-package rainbow-delimiters
-  :ensure t
+  
   :hook ((prog-mode . rainbow-delimiters-mode)))
 
 ;; (rainbow-delimiters-depth-1-face ((t (:foreground "#1b81e8"))))
@@ -129,81 +129,81 @@
 ;; (rainbow-delimiters-mismatched-face ((t (:foreground "yellow"))))
 
 (use-package yafolding
-  :ensure t
+  
   :bind (("C-c f f" . yafolding-toggle-element)
              ("C-c f g" . yafolding-toggle-all)))
 
 (use-package yasnippet
-  :ensure t
+  
   :config (progn
             (push "~/Programming/dotfiles/emacs/snippets" yas-snippet-dirs)
             (yas-global-mode t)))
 
 ;; display binding for commands.
 (use-package which-key
-  :ensure t
+  
   :config (which-key-mode t))
 
 ;; enable multiple cursors.
 (use-package multiple-cursors
-  :ensure t
+  
   :bind (("C-c [" . 'mc/mark-previous-like-this)
          ("C-c ]" . 'mc/mark-next-like-this)))
 
 ;; enable jump between windows.
 (use-package ace-window
-  :ensure t
+  
   :bind (("C-c w" . 'ace-window)))
 
 (use-package window-layout
-  :ensure t)
+  )
 
 ;; elfeed
 (use-package elfeed
-  :ensure t)
+  )
 
 (use-package elfeed-org
-  :ensure t
+  
   :config (progn
             (elfeed-org)
             (setq rmh-elfeed-org-files (list "~/Documents/feeds.org"))))
 
 ;; just like tmux.
 (use-package zoom-window
-  :ensure t
+  
   :bind (("C-c z z" . zoom-window-zoom)))
 
 ;; completion system.
 
 (use-package company
-  :ensure t
+  
   :hook (after-init . global-company-mode))
 
 (use-package flycheck
-  :ensure t
+  
   :config (global-flycheck-mode t))
 
 ;; display the diff on each changed line.
 
 (use-package diff-hl
-  :ensure t
+  
   :config (global-diff-hl-mode))
 
 (use-package hl-line
-  :ensure t
+  
   :config (global-hl-line-mode))
 
 (use-package hl-todo
-  :ensure t
+  
   :config (global-hl-todo-mode))
 
 (use-package hl-indent
-  :ensure t
+  
   :config (hl-indent-mode))
 
 ;; manage projects.
 (use-package projectile
-  :ensure t
+  
   :bind (("C-c p k" . projectile-kill-buffers)
          ("C-c p t" . projectile-run-shell)
          ("C-c p d" . projectile-dired)
@@ -215,15 +215,15 @@
 
 ;; nix package manager
 (use-package nix-mode
-  :ensure t)
+  )
 
 (use-package nix-sandbox
-  :ensure t
+  
   :after 'nix-mode)
 
 ;; enable paredit when possible.
 (use-package paredit
-  :ensure t
+  
   :hook ((lisp-mode . enable-paredit-mode)
          (emacs-lisp-mode . enable-paredit-mode)))
 
@@ -231,47 +231,47 @@
 ;; file formats
 
 (use-package yaml-mode
-  :ensure t)
+  )
 
 (use-package json-mode
-  :ensure t
+  
   :custom (js-indent-level 2))
 
 ;; text window margins
 
 (use-package olivetti
-  :ensure t)
+  )
 
 (use-package restclient
-  :ensure t
+  
   :mode (("\\.http\\'" . restclient-mode)))
 
 ;; debugger
 
 (use-package realgud
-  :ensure t)
+  )
 
 (use-package dockerfile-mode
-  :ensure t)
+  )
 
 ;; structural search and rewrite of code
 
 (use-package comby
-  :ensure t)
+  )
 
 ;; works with pull request from svc sites
 
 (use-package forge
-  :ensure t)
+  )
 
 (use-package lsp-mode
-  :ensure t
+  
   :bind (("C-c l r" . #'lsp-restart-workspace)
          ("C-c l d" . #'lsp-shutdown-workspace)
          ("C-c l l" . #'lsp-mode)))
 
 (use-package dap-mode
-  :ensure t
+  
   :config
   (dap-mode t)
   (dap-ui-mode t))
@@ -296,14 +296,14 @@
 (setq visible-bell t)
 
 (use-package cursor-agent
-  :ensure t
+  
   :load-path "/usr/local/src/cursor-agent.el/"
   :config
   (require 'cursor-agent)
   (setq cursor-agent-default-model "composer-1"))
 
 (use-package esc-mode
-  :ensure t
+  
   :load-path "/usr/local/src/emacs-esc/"
   :config
   (require 'esc-mode))

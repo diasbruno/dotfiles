@@ -10,7 +10,7 @@
 (require 'use-package)
 
 (use-package zig-mode
-  :ensure t)
+  )
 
 (provide 'zig-setup)
 ;;; zig-setup.el ends here

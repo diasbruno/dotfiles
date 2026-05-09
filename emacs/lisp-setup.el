@@ -1,4 +1,4 @@
-;;; lisp-setup.el -- My emacs configuration.
+;;; lisp-setup.el -- My emacs configuration.  -*- lexical-binding: t; -*-
 ;;;
 ;;; Commentary:
 ;;;
@@ -10,7 +10,7 @@
 (require 'use-package)
 
 (use-package sly
-  :ensure t
+  
   :config
   (require 'sly-autoloads)
   (sly-setup)
@@ -23,10 +23,10 @@
   :config (require 'sly-stepper-autoloads))
 
 (use-package geiser
-  :ensure t)
+  )
 
 (use-package geiser-gambit
-  :ensure t
+  
   :after geiser)
 
 (provide 'lisp-setup)

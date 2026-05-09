@@ -10,7 +10,7 @@
 (require 'use-package)
 
 (use-package smalltalk-mode
-  :ensure t)
+  )
 
 (provide 'smalltalk-setup)
 ;;; smalltalk-setup.el ends here

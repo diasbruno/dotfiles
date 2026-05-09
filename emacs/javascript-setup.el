@@ -15,14 +15,14 @@
 (global-key-bind (kbd "C-c j t") #'js-eval-quit)
 
 (use-package eslint-fix
-  :ensure t)
+  )
 
 (use-package rjsx-mode
-  :ensure t
+  
   :custom ((js-indent-level 2)))
 
 (use-package typescript-mode
-  :ensure t
+  
   :custom ((typescript-indent-level 2))
   :hook ((typescript-mode . lsp)
 	 (typescript-mode . eslint-fix)))
@@ -64,7 +64,7 @@
   (vue-js-indent))
 
 (use-package vue-mode
-  :ensure t
+  
   :custom ((js-indent-level 2)
 	   (js2-indent-level 2)
 	   (vue-html-extra-indent 2))
@@ -72,11 +72,11 @@
   :hook (vue-mode . lsp))
 
 (use-package scss-mode
-  :ensure t
+  
   :custom (css-indent-offset 2))
 
 (use-package sass-mode
-  :ensure t
+  
   :custom (css-indent-offset 2))
 
 (provide 'javascript-setup)

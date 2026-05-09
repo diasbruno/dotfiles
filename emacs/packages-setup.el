@@ -1,4 +1,4 @@
-;;; packages-setup.el -- Setup the neccessary stuff for 'package.
+;;; packages-setup.el -- Setup the neccessary stuff for 'package.  -*- lexical-binding: t; -*-
 ;;;
 ;;; Commentary:
 ;;;
@@ -17,7 +17,8 @@
 	urls))
 
 (unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+  ;(package-install 'use-package)
+  )
 
 (provide 'packages-setup)
 ;;; packages-setup.el ends here

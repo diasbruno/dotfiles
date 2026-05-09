@@ -10,7 +10,7 @@
 (require 'use-package)
 
 (use-package elpy
-  :ensure t)
+  )
 
 (provide 'python-setup)
 ;;; python-setup.el ends here

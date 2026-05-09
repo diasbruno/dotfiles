@@ -10,7 +10,7 @@
 (require 'use-package)
 
 (use-package fsharp-mode
-  :ensure t
+  
   :custom ((fsharp-indent-offset 2)
 	   (inferior-fsharp-program "fsharpi --readline-"))
   :hook ((fsharp-mode . highlight-indentation-mode)))
