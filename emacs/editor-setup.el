@@ -293,5 +293,7 @@
 ;; key bindings.
 (global-key-bind (kbd "C-c .") 'projectile-compile-project)
 
+(setq visible-bell t)
+
 (provide 'editor-setup)
 ;;; editor-setup.el ends here
