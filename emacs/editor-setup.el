@@ -58,15 +58,9 @@
 
 ;; theme
 
-(use-package nano-theme
-  :ensure t
-  :config (load-theme 'nano-dark t))
-
-(use-package nano-agenda
-  :ensure t)
-
-(use-package nano-modeline
-  :ensure t)
+(add-to-list 'load-path "/usr/local/src/siena-dusk-theme")
+(require 'siena-dusk-theme)
+(load-theme 'siena-dusk t nil)
 
 ;; ligatures and math synbols
 
