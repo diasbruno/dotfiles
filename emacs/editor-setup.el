@@ -302,5 +302,11 @@
   (require 'cursor-agent)
   (setq cursor-agent-default-model "composer-1"))
 
+(use-package esc-mode
+  :ensure t
+  :load-path "/usr/local/src/emacs-esc/"
+  :config
+  (require 'esc-mode))
+
 (provide 'editor-setup)
 ;;; editor-setup.el ends here
