@@ -62,15 +62,18 @@
 
 ;; ligatures and math synbols
 
-(straight-use-package 'pretty-mode)
+(straight-use-package
+ '(pretty-mode :host github :repo "akatov/pretty-mode"))
 (turn-on-pretty-mode)
 
 ;; completions
 
-(straight-use-package 'vertico)
+(straight-use-package
+ '(vertico :host github :repo "minad/vertico"))
 (vertico-mode)
 
-(straight-use-package 'ellama)
+(straight-use-package
+ '(ellama :host github :repo "s-kostyaev/ellama"))
 (setopt ellama-language "English")
 (require 'llm-ollama)
 (setopt ellama-provider
@@ -78,10 +81,12 @@
                  :chat-model "codellama" :embedding-model "codellama"))
 
 ;; diagram and uml
-(straight-use-package 'plantuml-mode)
+(straight-use-package
+ '(plantuml-mode :host github :repo "skuro/plantuml-mode"))
 
 ;; pomodoro
-(straight-use-package 'pomm)
+(straight-use-package
+ '(pomm :host github :repo "SqrtMinusOne/pomm.el"))
 
 (set-scroll-bar-mode nil)
 
@@ -89,19 +94,23 @@
 (menu-bar-mode -1)
 (setf indent-tabs-mode nil)
 
-(straight-use-package 'dashboard)
+(straight-use-package
+ '(dashboard :host github :repo "emacs-dashboard/emacs-dashboard"))
 (dashboard-setup-startup-hook)
 
 ;; edior config
-(straight-use-package 'editorconfig)
+(straight-use-package
+ '(editorconfig :host github :repo "editorconfig/editorconfig-emacs"))
 (editorconfig-mode 1)
 
 ;; git stuff
 
-(straight-use-package 'magit)
+(straight-use-package
+ '(magit :host github :repo "magit/magit"))
 (global-set-key (kbd "C-c m") #'magit-status)
 
-(straight-use-package 'rainbow-delimiters)
+(straight-use-package
+ '(rainbow-delimiters :host github :repo "Fanael/rainbow-delimiters"))
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; (rainbow-delimiters-depth-1-face ((t (:foreground "#1b81e8"))))
@@ -116,64 +125,79 @@
 ;; (rainbow-delimiters-unmatched-face ((t (:foreground "#e91b23"))))
 ;; (rainbow-delimiters-mismatched-face ((t (:foreground "yellow"))))
 
-(straight-use-package 'yafolding)
+(straight-use-package
+ '(yafolding :host github :repo "zenozeng/yafolding.el"))
 (global-set-key (kbd "C-c f f") #'yafolding-toggle-element)
 (global-set-key (kbd "C-c f g") #'yafolding-toggle-all)
 
-(straight-use-package 'yasnippet)
+(straight-use-package
+ '(yasnippet :host github :repo "joaotavora/yasnippet"))
 (push "~/Programming/dotfiles/emacs/snippets" yas-snippet-dirs)
 (yas-global-mode t)
 
 ;; display binding for commands.
-(straight-use-package 'which-key)
+(straight-use-package
+ '(which-key :host github :repo "justbur/emacs-which-key"))
 (which-key-mode t)
 
 ;; enable multiple cursors.
-(straight-use-package 'multiple-cursors)
+(straight-use-package
+ '(multiple-cursors :host github :repo "magnars/multiple-cursors.el"))
 (global-set-key (kbd "C-c [") #'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c ]") #'mc/mark-next-like-this)
 
 ;; enable jump between windows.
-(straight-use-package 'ace-window)
+(straight-use-package
+ '(ace-window :host github :repo "abo-abo/ace-window"))
 (global-set-key (kbd "C-c w") #'ace-window)
 
-(straight-use-package 'window-layout)
+(straight-use-package
+ '(window-layout :host github :repo "kiwanami/emacs-window-layout"))
 
 ;; elfeed
-(straight-use-package 'elfeed)
+(straight-use-package
+ '(elfeed :host github :repo "skeeto/elfeed"))
 
-(straight-use-package 'elfeed-org)
+(straight-use-package
+ '(elfeed-org :host github :repo "remyhonig/elfeed-org"))
 (elfeed-org)
 (setq rmh-elfeed-org-files (list "~/Documents/feeds.org"))
 
 ;; just like tmux.
-(straight-use-package 'zoom-window)
+(straight-use-package
+ '(zoom-window :host github :repo "syohex/emacs-zoom-window"))
 (global-set-key (kbd "C-c z z") #'zoom-window-zoom)
 
 ;; completion system.
 
-(straight-use-package 'company)
+(straight-use-package
+ '(company :host github :repo "company-mode/company-mode"))
 (add-hook 'after-init-hook #'global-company-mode)
 
-(straight-use-package 'flycheck)
+(straight-use-package
+ '(flycheck :host github :repo "flycheck/flycheck"))
 (global-flycheck-mode t)
 
 ;; display the diff on each changed line.
 
-(straight-use-package 'diff-hl)
+(straight-use-package
+ '(diff-hl :host github :repo "dgutov/diff-hl"))
 (global-diff-hl-mode)
 
-(straight-use-package 'hl-line)
+(require 'hl-line)
 (global-hl-line-mode)
 
-(straight-use-package 'hl-todo)
+(straight-use-package
+ '(hl-todo :host github :repo "tarsius/hl-todo"))
 (global-hl-todo-mode)
 
-(straight-use-package 'hl-indent)
+(straight-use-package
+ '(hl-indent :host github :repo "ikirill/hl-indent"))
 (hl-indent-mode)
 
 ;; manage projects.
-(straight-use-package 'projectile)
+(straight-use-package
+ '(projectile :host github :repo "bbatsov/projectile"))
 (global-set-key (kbd "C-c p k") #'projectile-kill-buffers)
 (global-set-key (kbd "C-c p t") #'projectile-run-shell)
 (global-set-key (kbd "C-c p d") #'projectile-dired)
@@ -184,50 +208,63 @@
 (projectile-mode)
 
 ;; nix package manager
-(straight-use-package 'nix-mode)
+(straight-use-package
+ '(nix-mode :host github :repo "NixOS/nix-mode"))
 
-(straight-use-package 'nix-sandbox)
+(straight-use-package
+ '(nix-sandbox :host github :repo "travisbhartwell/nix-emacs"))
 
 ;; enable paredit when possible.
-(straight-use-package 'paredit)
+(straight-use-package
+ '(paredit :host github :repo "emacsmirror/paredit"))
 (add-hook 'lisp-mode-hook #'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
 
 
 ;; file formats
 
-(straight-use-package 'yaml-mode)
+(straight-use-package
+ '(yaml-mode :host github :repo "yoshiki/yaml-mode"))
 
-(straight-use-package 'json-mode)
+(straight-use-package
+ '(json-mode :host github :repo "json-emacs/json-mode"))
 (setq js-indent-level 2)
 
 ;; text window margins
 
-(straight-use-package 'olivetti)
+(straight-use-package
+ '(olivetti :host github :repo "rnkn/olivetti"))
 
-(straight-use-package 'restclient)
+(straight-use-package
+ '(restclient :host github :repo "pashky/restclient.el"))
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
 ;; debugger
 
-(straight-use-package 'realgud)
+(straight-use-package
+ '(realgud :host github :repo "realgud/realgud"))
 
-(straight-use-package 'dockerfile-mode)
+(straight-use-package
+ '(dockerfile-mode :host github :repo "spotify/dockerfile-mode"))
 
 ;; structural search and rewrite of code
 
-(straight-use-package 'comby)
+(straight-use-package
+ '(comby :host github :repo "antirez/comby"))
 
 ;; works with pull request from svc sites
 
-(straight-use-package 'forge)
+(straight-use-package
+ '(forge :host github :repo "magit/forge"))
 
-(straight-use-package 'lsp-mode)
+(straight-use-package
+ '(lsp-mode :host github :repo "emacs-lsp/lsp-mode"))
 (global-set-key (kbd "C-c l r") #'lsp-restart-workspace)
 (global-set-key (kbd "C-c l d") #'lsp-shutdown-workspace)
 (global-set-key (kbd "C-c l l") #'lsp-mode)
 
-(straight-use-package 'dap-mode)
+(straight-use-package
+ '(dap-mode :host github :repo "emacs-lsp/dap-mode"))
 (dap-mode t)
 (dap-ui-mode t)
 
@@ -248,7 +285,8 @@
 ;; key bindings.
 (global-key-bind (kbd "C-c .") 'projectile-compile-project)
 
-(straight-use-package 'rfc-mode)
+(straight-use-package
+ '(rfc-mode :host github :repo "galdor/rfc-mode"))
 
 (setq visible-bell t)
 

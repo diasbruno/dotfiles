@@ -8,9 +8,11 @@
 ;;;
 
 
-(straight-use-package 'go-mode)
+(straight-use-package
+ '(go-mode :host github :repo "dominikh/go-mode.el"))
 
-(straight-use-package 'golint)
+(straight-use-package
+ '(golint :host github :repo "golang/lint"))
 
 (provide 'go-setup)
 ;;; go-setup.el ends here

@@ -8,7 +8,8 @@
 ;;;
 
 
-(straight-use-package 'elpy)
+(straight-use-package
+ '(elpy :host github :repo "jorgenschaefer/elpy"))
 
 (provide 'python-setup)
 ;;; python-setup.el ends here

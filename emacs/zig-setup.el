@@ -8,7 +8,8 @@
 ;;;
 
 
-(straight-use-package 'zig-mode)
+(straight-use-package
+ '(zig-mode :host github :repo "ziglang/zig-mode"))
 
 (provide 'zig-setup)
 ;;; zig-setup.el ends here

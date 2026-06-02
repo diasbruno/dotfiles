@@ -10,13 +10,16 @@
 
 (defvar lombok-jar nil)
 
-(straight-use-package 'kotlin-mode)
+(straight-use-package
+ '(kotlin-mode :host github :repo "Emacs-Kotlin/kotlin-mode"))
 
-(straight-use-package 'flycheck-kotlin)
+(straight-use-package
+ '(flycheck-kotlin :host github :repo "whirm/flycheck-kotlin"))
 (setq flycheck-kotlin-ktlint-executable "/dias/ktlint/ktlint/build/run/ktlint")
 (add-hook 'kotlin-mode-hook #'flycheck-kotlin-setup)
 
-(straight-use-package 'lsp-java)
+(straight-use-package
+ '(lsp-java :host github :repo "emacs-lsp/lsp-java"))
 (require 'dap-java)
 
   ;; lsp-java-vmargs
