@@ -1,4 +1,4 @@
-;;; packages-setup.el -- Setup the neccessary stuff for 'package.  -*- lexical-binding: t; -*-
+;;; packages-setup.el -- Setup the neccessary stuff for 'straight.  -*- lexical-binding: t; -*-
 ;;;
 ;;; Commentary:
 ;;;
@@ -7,18 +7,24 @@
 ;;; Code:
 ;;;
 
-(require 'package)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(let ((urls '(("melpa" . "http://melpa.org/packages/")
-              ("melpa-stable" . "https://stable.melpa.org/packages/")
-	      ("org" . "http://orgmode.org/elpa/"))))
-  (mapc (lambda (source)
-	  (add-to-list 'package-archives source t))
-	urls))
-
-(unless (package-installed-p 'use-package)
-  ;(package-install 'use-package)
-  )
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 (provide 'packages-setup)
 ;;; packages-setup.el ends here

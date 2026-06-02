@@ -7,7 +7,6 @@
 ;;; Code:
 ;;;
 
-(require 'use-package)
 
 (provide 'ocaml-setup)
 ;;; ocaml-setup.el ends here
