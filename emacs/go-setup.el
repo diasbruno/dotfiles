@@ -8,11 +8,9 @@
 ;;;
 
 
-(use-package go-mode
-  )
+(straight-use-package 'go-mode)
 
-(use-package golint
-  )
+(straight-use-package 'golint)
 
 (provide 'go-setup)
 ;;; go-setup.el ends here

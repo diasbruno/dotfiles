@@ -51,9 +51,8 @@
 (global-key-bind "C-<" #'undo)
 (global-key-bind "C->" #'undo-redo)
 
-(use-package combyier
-  :load-path "/usr/local/src/combyier"
-  :config (require 'combyier))
+(add-to-list 'load-path "/usr/local/src/combyier")
+(require 'combyier)
 
 ;; theme
 
@@ -63,31 +62,26 @@
 
 ;; ligatures and math synbols
 
-(use-package pretty-mode
-  
-  :config (turn-on-pretty-mode))
+(straight-use-package 'pretty-mode)
+(turn-on-pretty-mode)
 
 ;; completions
 
-(use-package vertico
-  
-  :config (vertico-mode))
+(straight-use-package 'vertico)
+(vertico-mode)
 
-(use-package ellama
-  :init
-  (setopt ellama-language "English")
-  (require 'llm-ollama)
-  (setopt ellama-provider
-                  (make-llm-ollama
-                   :chat-model "codellama" :embedding-model "codellama")))
+(straight-use-package 'ellama)
+(setopt ellama-language "English")
+(require 'llm-ollama)
+(setopt ellama-provider
+                (make-llm-ollama
+                 :chat-model "codellama" :embedding-model "codellama"))
 
 ;; diagram and uml
-(use-package plantuml-mode
-  )
+(straight-use-package 'plantuml-mode)
 
 ;; pomodoro
-(use-package pomm
-  )
+(straight-use-package 'pomm)
 
 (set-scroll-bar-mode nil)
 
@@ -95,25 +89,20 @@
 (menu-bar-mode -1)
 (setf indent-tabs-mode nil)
 
-(use-package dashboard
-  
-  :config (dashboard-setup-startup-hook))
+(straight-use-package 'dashboard)
+(dashboard-setup-startup-hook)
 
 ;; edior config
-(use-package editorconfig
-  
-  :config
-  (editorconfig-mode 1))
+(straight-use-package 'editorconfig)
+(editorconfig-mode 1)
 
 ;; git stuff
 
-(use-package magit
-  
-  :bind (("C-c m" . magit-status)))
+(straight-use-package 'magit)
+(global-set-key (kbd "C-c m") #'magit-status)
 
-(use-package rainbow-delimiters
-  
-  :hook ((prog-mode . rainbow-delimiters-mode)))
+(straight-use-package 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; (rainbow-delimiters-depth-1-face ((t (:foreground "#1b81e8"))))
 ;; (rainbow-delimiters-depth-2-face ((t (:foreground "#ffffff"))))
@@ -127,153 +116,120 @@
 ;; (rainbow-delimiters-unmatched-face ((t (:foreground "#e91b23"))))
 ;; (rainbow-delimiters-mismatched-face ((t (:foreground "yellow"))))
 
-(use-package yafolding
-  
-  :bind (("C-c f f" . yafolding-toggle-element)
-             ("C-c f g" . yafolding-toggle-all)))
+(straight-use-package 'yafolding)
+(global-set-key (kbd "C-c f f") #'yafolding-toggle-element)
+(global-set-key (kbd "C-c f g") #'yafolding-toggle-all)
 
-(use-package yasnippet
-  
-  :config (progn
-            (push "~/Programming/dotfiles/emacs/snippets" yas-snippet-dirs)
-            (yas-global-mode t)))
+(straight-use-package 'yasnippet)
+(push "~/Programming/dotfiles/emacs/snippets" yas-snippet-dirs)
+(yas-global-mode t)
 
 ;; display binding for commands.
-(use-package which-key
-  
-  :config (which-key-mode t))
+(straight-use-package 'which-key)
+(which-key-mode t)
 
 ;; enable multiple cursors.
-(use-package multiple-cursors
-  
-  :bind (("C-c [" . 'mc/mark-previous-like-this)
-         ("C-c ]" . 'mc/mark-next-like-this)))
+(straight-use-package 'multiple-cursors)
+(global-set-key (kbd "C-c [") #'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c ]") #'mc/mark-next-like-this)
 
 ;; enable jump between windows.
-(use-package ace-window
-  
-  :bind (("C-c w" . 'ace-window)))
+(straight-use-package 'ace-window)
+(global-set-key (kbd "C-c w") #'ace-window)
 
-(use-package window-layout
-  )
+(straight-use-package 'window-layout)
 
 ;; elfeed
-(use-package elfeed
-  )
+(straight-use-package 'elfeed)
 
-(use-package elfeed-org
-  
-  :config (progn
-            (elfeed-org)
-            (setq rmh-elfeed-org-files (list "~/Documents/feeds.org"))))
+(straight-use-package 'elfeed-org)
+(elfeed-org)
+(setq rmh-elfeed-org-files (list "~/Documents/feeds.org"))
 
 ;; just like tmux.
-(use-package zoom-window
-  
-  :bind (("C-c z z" . zoom-window-zoom)))
+(straight-use-package 'zoom-window)
+(global-set-key (kbd "C-c z z") #'zoom-window-zoom)
 
 ;; completion system.
 
-(use-package company
-  
-  :hook (after-init . global-company-mode))
+(straight-use-package 'company)
+(add-hook 'after-init-hook #'global-company-mode)
 
-(use-package flycheck
-  
-  :config (global-flycheck-mode t))
+(straight-use-package 'flycheck)
+(global-flycheck-mode t)
 
 ;; display the diff on each changed line.
 
-(use-package diff-hl
-  
-  :config (global-diff-hl-mode))
+(straight-use-package 'diff-hl)
+(global-diff-hl-mode)
 
-(use-package hl-line
-  
-  :config (global-hl-line-mode))
+(straight-use-package 'hl-line)
+(global-hl-line-mode)
 
-(use-package hl-todo
-  
-  :config (global-hl-todo-mode))
+(straight-use-package 'hl-todo)
+(global-hl-todo-mode)
 
-(use-package hl-indent
-  
-  :config (hl-indent-mode))
+(straight-use-package 'hl-indent)
+(hl-indent-mode)
 
 ;; manage projects.
-(use-package projectile
-  
-  :bind (("C-c p k" . projectile-kill-buffers)
-         ("C-c p t" . projectile-run-shell)
-         ("C-c p d" . projectile-dired)
-         ("C-c p p" . projectile-switch-project)
-         ("C-c p f" . projectile-find-file)
-         ("C-c p g" . projectile-grep)
-         ("C-c p s" . projectile-run-shell))
-  :config (projectile-mode))
+(straight-use-package 'projectile)
+(global-set-key (kbd "C-c p k") #'projectile-kill-buffers)
+(global-set-key (kbd "C-c p t") #'projectile-run-shell)
+(global-set-key (kbd "C-c p d") #'projectile-dired)
+(global-set-key (kbd "C-c p p") #'projectile-switch-project)
+(global-set-key (kbd "C-c p f") #'projectile-find-file)
+(global-set-key (kbd "C-c p g") #'projectile-grep)
+(global-set-key (kbd "C-c p s") #'projectile-run-shell)
+(projectile-mode)
 
 ;; nix package manager
-(use-package nix-mode
-  )
+(straight-use-package 'nix-mode)
 
-(use-package nix-sandbox
-  
-  :after 'nix-mode)
+(straight-use-package 'nix-sandbox)
 
 ;; enable paredit when possible.
-(use-package paredit
-  
-  :hook ((lisp-mode . enable-paredit-mode)
-         (emacs-lisp-mode . enable-paredit-mode)))
+(straight-use-package 'paredit)
+(add-hook 'lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
 
 
 ;; file formats
 
-(use-package yaml-mode
-  )
+(straight-use-package 'yaml-mode)
 
-(use-package json-mode
-  
-  :custom (js-indent-level 2))
+(straight-use-package 'json-mode)
+(setq js-indent-level 2)
 
 ;; text window margins
 
-(use-package olivetti
-  )
+(straight-use-package 'olivetti)
 
-(use-package restclient
-  
-  :mode (("\\.http\\'" . restclient-mode)))
+(straight-use-package 'restclient)
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
 ;; debugger
 
-(use-package realgud
-  )
+(straight-use-package 'realgud)
 
-(use-package dockerfile-mode
-  )
+(straight-use-package 'dockerfile-mode)
 
 ;; structural search and rewrite of code
 
-(use-package comby
-  )
+(straight-use-package 'comby)
 
 ;; works with pull request from svc sites
 
-(use-package forge
-  )
+(straight-use-package 'forge)
 
-(use-package lsp-mode
-  
-  :bind (("C-c l r" . #'lsp-restart-workspace)
-         ("C-c l d" . #'lsp-shutdown-workspace)
-         ("C-c l l" . #'lsp-mode)))
+(straight-use-package 'lsp-mode)
+(global-set-key (kbd "C-c l r") #'lsp-restart-workspace)
+(global-set-key (kbd "C-c l d") #'lsp-shutdown-workspace)
+(global-set-key (kbd "C-c l l") #'lsp-mode)
 
-(use-package dap-mode
-  
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))
+(straight-use-package 'dap-mode)
+(dap-mode t)
+(dap-ui-mode t)
 
 (add-to-list 'load-path "/usr/local/src/combobulate")
 
@@ -292,22 +248,16 @@
 ;; key bindings.
 (global-key-bind (kbd "C-c .") 'projectile-compile-project)
 
-(use-package rfc-mode)
+(straight-use-package 'rfc-mode)
 
 (setq visible-bell t)
 
-(use-package cursor-agent
-  
-  :load-path "/usr/local/src/cursor-agent.el/"
-  :config
-  (require 'cursor-agent)
-  (setq cursor-agent-default-model "composer-1"))
+(add-to-list 'load-path "/usr/local/src/cursor-agent.el/")
+(require 'cursor-agent)
+(setq cursor-agent-default-model "composer-1")
 
-(use-package esc-mode
-  
-  :load-path "/usr/local/src/emacs-esc/"
-  :config
-  (require 'esc-mode))
+(add-to-list 'load-path "/usr/local/src/emacs-esc/")
+(require 'esc-mode)
 
 (provide 'editor-setup)
 ;;; editor-setup.el ends here

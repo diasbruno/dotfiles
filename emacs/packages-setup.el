@@ -23,8 +23,5 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
-
 (provide 'packages-setup)
 ;;; packages-setup.el ends here

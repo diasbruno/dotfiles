@@ -8,14 +8,11 @@
 ;;;
 
 
-(use-package lsp-sourcekit
-  
-  :after lsp-mode
-  :config
+(straight-use-package 'lsp-sourcekit)
+(with-eval-after-load 'lsp-mode
   (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
 
-(use-package swift-mode
-  )
+(straight-use-package 'swift-mode)
 
 (provide 'swift-setup)
 ;;; swift-setup.el ends here

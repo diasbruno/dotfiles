@@ -1,14 +1,9 @@
-(use-package csharp-mode
-  )
+(straight-use-package 'csharp-mode)
 
-(use-package csproj-mode
-  )
+(straight-use-package 'csproj-mode)
 
-(use-package omnisharp
-  )
+(straight-use-package 'omnisharp)
 
-(use-package dotnet
-  )
+(straight-use-package 'dotnet)
 
-(use-package sharper
-  )
+(straight-use-package 'sharper)

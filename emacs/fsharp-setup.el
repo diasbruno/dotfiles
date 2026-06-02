@@ -8,11 +8,10 @@
 ;;;
 
 
-(use-package fsharp-mode
-  
-  :custom ((fsharp-indent-offset 2)
-	   (inferior-fsharp-program "fsharpi --readline-"))
-  :hook ((fsharp-mode . highlight-indentation-mode)))
+(straight-use-package 'fsharp-mode)
+(setq fsharp-indent-offset 2
+      inferior-fsharp-program "fsharpi --readline-")
+(add-hook 'fsharp-mode-hook #'highlight-indentation-mode)
 
 (provide 'fsharp-editor)
 ;;; fsharp-editor.el ends here

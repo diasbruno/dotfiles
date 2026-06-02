@@ -8,8 +8,7 @@
 ;;;
 
 
-(use-package elpy
-  )
+(straight-use-package 'elpy)
 
 (provide 'python-setup)
 ;;; python-setup.el ends here
