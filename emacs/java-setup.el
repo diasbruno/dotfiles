@@ -7,7 +7,6 @@
 ;;; Code:
 ;;;
 
-(require 'use-package)
 
 (defvar lombok-jar nil)
 

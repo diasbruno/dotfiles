@@ -5,7 +5,6 @@
 ;;; Code:
 ;;;
 
-(require 'use-package)
 
 (load "/usr/local/src/js-eval.el/js-eval.el")
 

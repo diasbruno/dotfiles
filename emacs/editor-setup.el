@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'use-package)
 
 ;;;###autoload
 (defun setup-for-image ()

@@ -7,7 +7,6 @@
 ;;; Code:
 ;;;
 
-(require 'use-package)
 
 (use-package zig-mode
   )

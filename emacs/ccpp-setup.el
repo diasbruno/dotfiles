@@ -7,7 +7,6 @@
 ;;; Code:
 ;;;
 
-(require 'use-package)
 
 (add-to-list 'load-path "~/Programming/c3-ts-mode/")
 
