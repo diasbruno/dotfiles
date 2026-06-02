@@ -8,8 +8,8 @@
 ;;;
 
 
-(use-package smalltalk-mode
-  )
+(straight-use-package
+ '(smalltalk-mode :host github :repo "emacsmirror/smalltalk-mode"))
 
 (provide 'smalltalk-setup)
 ;;; smalltalk-setup.el ends here

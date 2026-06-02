@@ -13,18 +13,18 @@
 (global-key-bind (kbd "C-c j i") #'js-eval)
 (global-key-bind (kbd "C-c j t") #'js-eval-quit)
 
-(use-package eslint-fix
-  )
+(straight-use-package
+ '(eslint-fix :host github :repo "codesuki/eslint-fix"))
 
-(use-package rjsx-mode
-  
-  :custom ((js-indent-level 2)))
+(straight-use-package
+ '(rjsx-mode :host github :repo "felipeochoa/rjsx-mode"))
+(setq js-indent-level 2)
 
-(use-package typescript-mode
-  
-  :custom ((typescript-indent-level 2))
-  :hook ((typescript-mode . lsp)
-	 (typescript-mode . eslint-fix)))
+(straight-use-package
+ '(typescript-mode :host github :repo "emacs-typescript/typescript.el"))
+(setq typescript-indent-level 2)
+(add-hook 'typescript-mode-hook #'lsp)
+(add-hook 'typescript-mode-hook #'eslint-fix)
 
 (global-key-bind (kbd "C-c d") 'eslint-fix)
 
@@ -62,21 +62,21 @@
   (interactive)
   (vue-js-indent))
 
-(use-package vue-mode
-  
-  :custom ((js-indent-level 2)
-	   (js2-indent-level 2)
-	   (vue-html-extra-indent 2))
-  :bind (("C-c t" . #'vue-js-indentation))
-  :hook (vue-mode . lsp))
+(straight-use-package
+ '(vue-mode :host github :repo "AdamNiederer/vue-mode"))
+(setq js-indent-level 2
+      js2-indent-level 2
+      vue-html-extra-indent 2)
+(global-set-key (kbd "C-c t") #'vue-js-indentation)
+(add-hook 'vue-mode-hook #'lsp)
 
-(use-package scss-mode
-  
-  :custom (css-indent-offset 2))
+(straight-use-package
+ '(scss-mode :host github :repo "antonj/Scss-mode"))
+(setq css-indent-offset 2)
 
-(use-package sass-mode
-  
-  :custom (css-indent-offset 2))
+(straight-use-package
+ '(sass-mode :host github :repo "nex3/sass-mode"))
+(setq css-indent-offset 2)
 
 (provide 'javascript-setup)
 ;;; javascript-setup.el ends here

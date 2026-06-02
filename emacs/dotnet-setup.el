@@ -1,14 +1,14 @@
-(use-package csharp-mode
-  )
+(straight-use-package
+ '(csharp-mode :host github :repo "josteink/csharp-mode"))
 
-(use-package csproj-mode
-  )
+(straight-use-package
+ '(csproj-mode :host github :repo "omajid/csproj-mode"))
 
-(use-package omnisharp
-  )
+(straight-use-package
+ '(omnisharp :host github :repo "OmniSharp/omnisharp-emacs"))
 
-(use-package dotnet
-  )
+(straight-use-package
+ '(dotnet :host github :repo "mnie/dotnet.el"))
 
-(use-package sharper
-  )
+(straight-use-package
+ '(sharper :host github :repo "sebasmonia/sharper"))

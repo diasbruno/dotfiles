@@ -10,19 +10,17 @@
 
 (defvar lombok-jar nil)
 
-(use-package kotlin-mode
-  )
+(straight-use-package
+ '(kotlin-mode :host github :repo "Emacs-Kotlin/kotlin-mode"))
 
-(use-package flycheck-kotlin
-  
-  :hook (kotlin-mode . #'flycheck-kotlin-setup)
-  :custom (flycheck-kotlin-ktlint-executable "/dias/ktlint/ktlint/build/run/ktlint")
-  :after flycheck-mode kotlin-mode)
+(straight-use-package
+ '(flycheck-kotlin :host github :repo "whirm/flycheck-kotlin"))
+(setq flycheck-kotlin-ktlint-executable "/dias/ktlint/ktlint/build/run/ktlint")
+(add-hook 'kotlin-mode-hook #'flycheck-kotlin-setup)
 
-(use-package lsp-java
-  
-  :config
-  (require 'dap-java)
+(straight-use-package
+ '(lsp-java :host github :repo "emacs-lsp/lsp-java"))
+(require 'dap-java)
 
   ;; lsp-java-vmargs
   ;;	(list "-noverify"
@@ -33,7 +31,7 @@
   ;;	      (concat "-Xbootclasspath/a:" lombok-jar))
 
 
-  (setq lsp-file-watch-ignored
+(setq lsp-file-watch-ignored
 	'(".idea" ".ensime_cache" ".eunit" "node_modules"
 	  ".git" ".hg" ".fslckout" "_FOSSIL_"
 	  ".bzr" "_darcs" ".tox" ".svn" ".stack-work"
@@ -43,8 +41,7 @@
 	;; Don't organize imports on save
 	lsp-java-save-action-organize-imports nil)
 
-  :demand t
-  :hook (java-mode . lsp))
+(add-hook 'java-mode-hook #'lsp)
 
 (provide 'java-setup)
 ;;; java-setup.el ends here

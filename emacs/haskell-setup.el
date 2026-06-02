@@ -8,13 +8,12 @@
 ;;;
 
 
-(use-package haskell-mode
-  )
+(straight-use-package
+ '(haskell-mode :host github :repo "haskell/haskell-mode"))
 
-(use-package lsp-haskell
-  
-  :config (progn
-            (setf lsp-haskell-server-path "haskell-language-server-wrapper")))
+(straight-use-package
+ '(lsp-haskell :host github :repo "emacs-lsp/lsp-haskell"))
+(setf lsp-haskell-server-path "haskell-language-server-wrapper")
 
 (add-hook 'haskell-mode-hook #'lsp)
 (add-hook 'haskell-literate-mode-hook #'lsp)

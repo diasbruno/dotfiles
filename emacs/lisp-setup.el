@@ -8,25 +8,24 @@
 ;;;
 
 
-(use-package sly
-  
-  :config
-  (require 'sly-autoloads)
-  (sly-setup)
-  (require 'sly-stickers))
+(straight-use-package
+ '(sly :host github :repo "joaotavora/sly"))
+(require 'sly-autoloads)
+(sly-setup)
+(require 'sly-stickers)
 
 (add-to-list 'load-path "~/Programming/sly-stepper")
 
-(use-package sly-stepper
-  :after sly
-  :config (require 'sly-stepper-autoloads))
+(straight-use-package
+ '(sly-stepper :host github :repo "joaotavora/sly-stepper"))
+(with-eval-after-load 'sly
+  (require 'sly-stepper-autoloads))
 
-(use-package geiser
-  )
+(straight-use-package
+ '(geiser :host gitlab :repo "emacs-geiser/geiser"))
 
-(use-package geiser-gambit
-  
-  :after geiser)
+(straight-use-package
+ '(geiser-gambit :host gitlab :repo "emacs-geiser/geiser-gambit"))
 
 (provide 'lisp-setup)
 ;;; lisp-setup.el ends here
