@@ -15,48 +15,48 @@
    If a region is selected, wrap the region with the HTML tag, except for self-closing tags."
   (interactive (list (read-string "Enter tag name: "))) ;; Prompt for tag name
   (let* ((void-elements '("area" "base" "br" "col" "embed" "hr" "img" "input" "link" "meta" "source" "track" "wbr"))
-         (is-void (member tag-name void-elements))
-         (attributes '())
-         (continue t))
+	 (is-void (member tag-name void-elements))
+	 (attributes '())
+	 (continue t))
     ;; Gather attributes
     (while continue
       (let ((attr-name (read-string "Enter attribute name (leave blank to finish): ")))
-        (if (string-empty-p attr-name)
-            (setq continue nil) ;; Stop if no attribute name is provided
-          (let ((attr-value (read-string (format "Enter value for attribute '%s': " attr-name))))
-            (push (format "%s=\"%s\"" attr-name attr-value) attributes)))))
+	(if (string-empty-p attr-name)
+	    (setq continue nil) ;; Stop if no attribute name is provided
+	  (let ((attr-value (read-string (format "Enter value for attribute '%s': " attr-name))))
+	    (push (format "%s=\"%s\"" attr-name attr-value) attributes)))))
     ;; Construct the start tag
     (let ((start-tag (if attributes
-                         (format "<%s %s>" tag-name (string-join (reverse attributes) " "))
-                       (format "<%s>" tag-name))))
+			 (format "<%s %s>" tag-name (string-join (reverse attributes) " "))
+		       (format "<%s>" tag-name))))
       (if is-void
-          ;; Handle void tags
-          (insert (concat (string-trim-right start-tag ">") " />"))
-        ;; Handle normal tags
-        (let ((end-tag (format "</%s>" tag-name)))
-          (if (use-region-p)
-              ;; If a region is selected, wrap it with the tags
-              (let ((region-start (region-beginning))
-                    (region-end (region-end)))
-                (save-excursion
-                  (goto-char region-end)
-                  (insert end-tag)
-                  (goto-char region-start)
-                  (insert start-tag)))
-            ;; If no region is selected, insert empty tags at point
-            (insert start-tag end-tag)
-            (backward-char (length end-tag))))))))
+	  ;; Handle void tags
+	  (insert (concat (string-trim-right start-tag ">") " />"))
+	;; Handle normal tags
+	(let ((end-tag (format "</%s>" tag-name)))
+	  (if (use-region-p)
+	      ;; If a region is selected, wrap it with the tags
+	      (let ((region-start (region-beginning))
+		    (region-end (region-end)))
+		(save-excursion
+		  (goto-char region-end)
+		  (insert end-tag)
+		  (goto-char region-start)
+		  (insert start-tag)))
+	    ;; If no region is selected, insert empty tags at point
+	    (insert start-tag end-tag)
+	    (backward-char (length end-tag))))))))
 
 (global-key-bind "C-c t" #'insert-html-tag)
 (global-key-bind "C-<" #'undo)
 (global-key-bind "C->" #'undo-redo)
 
-(add-to-list 'load-path "/usr/local/src/combyier")
+(add-to-list 'load-path "~/Programming/combyier")
 (require 'combyier)
 
 ;; theme
 
-(add-to-list 'load-path "/usr/local/src/siena-dusk-theme")
+(add-to-list 'load-path "~/Programming/siena-dusk-theme")
 (require 'siena-dusk-theme)
 (load-theme 'siena-dusk t nil)
 
@@ -77,8 +77,8 @@
 (setopt ellama-language "English")
 (require 'llm-ollama)
 (setopt ellama-provider
-                (make-llm-ollama
-                 :chat-model "codellama" :embedding-model "codellama"))
+		(make-llm-ollama
+		 :chat-model "codellama" :embedding-model "codellama"))
 
 ;; diagram and uml
 (straight-use-package
@@ -127,11 +127,13 @@
 
 (straight-use-package
  '(yafolding :host github :repo "zenozeng/yafolding.el"))
+(add-to-list 'prog-mode-hook #'yafolding-mode)
 (global-set-key (kbd "C-c f f") #'yafolding-toggle-element)
 (global-set-key (kbd "C-c f g") #'yafolding-toggle-all)
 
 (straight-use-package
  '(yasnippet :host github :repo "joaotavora/yasnippet"))
+(require 'yasnippet)
 (push "~/Programming/dotfiles/emacs/snippets" yas-snippet-dirs)
 (yas-global-mode t)
 
@@ -193,6 +195,7 @@
 
 (straight-use-package
  '(hl-indent :host github :repo "ikirill/hl-indent"))
+(require 'hl-indent)
 (hl-indent-mode)
 
 ;; manage projects.
@@ -249,8 +252,8 @@
 
 ;; structural search and rewrite of code
 
-(straight-use-package
- '(comby :host github :repo "antirez/comby"))
+;; (straight-use-package
+;;  '(comby :host github :repo "antirez/comby"))
 
 ;; works with pull request from svc sites
 
@@ -268,7 +271,7 @@
 (dap-mode t)
 (dap-ui-mode t)
 
-(add-to-list 'load-path "/usr/local/src/combobulate")
+(add-to-list 'load-path "~/Programming/combobulate")
 
 (require 'combobulate)
 
@@ -277,7 +280,7 @@
 ;; custom key bindings
 
 ;; auto-save
-(setf backup-directory-alist '(("." . "/usr/local/src/emacs/tmp/auto-save")))
+(setf backup-directory-alist '(("." . "~/Programming/emacs/tmp/auto-save")))
 
 ;; key bindings.
 (global-key-bind (kbd "C-c q") 'whitespace-cleanup)
@@ -290,12 +293,27 @@
 
 (setq visible-bell t)
 
-(add-to-list 'load-path "/usr/local/src/cursor-agent.el/")
+(add-to-list 'load-path "~/Programming/cursor-agent.el/")
 (require 'cursor-agent)
 (setq cursor-agent-default-model "composer-1")
 
-(add-to-list 'load-path "/usr/local/src/emacs-esc/")
+(add-to-list 'load-path "~/Programming/emacs-esc/")
 (require 'esc-mode)
+
+(straight-use-package
+ '(polymode :host github :repo "polymode/polymode"))
+
+(require 'polymode)
+
+(straight-use-package
+ '(polymode-org :host github :repo "polymode/poly-org"))
+
+(require 'poly-org)
+
+(straight-use-package
+ '(tla-tools :host github :repo "mrc/tla-tools"))
+
+(require 'tla-pcal-mode)
 
 (provide 'editor-setup)
 ;;; editor-setup.el ends here

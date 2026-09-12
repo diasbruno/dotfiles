@@ -7,7 +7,7 @@
 ;;; Code:
 ;;;
 
-(defvar *dotfiles-path* "/usr/local/src/dotfiles")
+(defvar *dotfiles-path* "~/Programming/dotfiles")
 
 (defun global-key-bind (key fn)
   "Define a global bind for KEY to execute FN."
