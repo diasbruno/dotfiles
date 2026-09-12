@@ -5,8 +5,8 @@
 ;;; Code:
 ;;;
 
-
-(load "/usr/local/src/js-eval.el/js-eval.el")
+(straight-use-package
+ '(js-eval :host github :repo "diasbruno/js-eval.el"))
 
 (global-key-bind (kbd "C-c j e") #'js-eval-eval-expression)
 (global-key-bind (kbd "C-c j r") #'js-eval-eval-region)
