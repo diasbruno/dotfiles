@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: fn
+# key: fn
+# --
+
+${1:void} $2($3) {
+  $0
+}

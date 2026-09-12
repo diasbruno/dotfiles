@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: either
+# key: ei
+# --
+
+Either($1, $2)
